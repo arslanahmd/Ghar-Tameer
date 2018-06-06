@@ -31,6 +31,29 @@
   <!--[if lt IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+  <style>
+    .navbar__logo {
+      padding: 0.5rem 0 !important;
+  }
+    .navigation ul .nav-item a {
+      color: #333;
+      -webkit-transition: .3s;
+      transition: .3s;
+      text-transform: uppercase;
+      display: inline-block;
+      padding: 10px;
+      font-size: 17px;
+  }
+  .navigation ul {
+    border-bottom: 0px solid #d3d1d0;
+    display: block;
+    text-align: center;
+  }
+  .navbar__search {
+    padding: 1rem 0;
+    position: relative;
+  }
+  </style>
 </head>
 
 <body>
@@ -87,35 +110,46 @@
     <div class="navbar__brand container-fluid d-block">
       <div class="container">
         <div class="row no-gutters">
-          <div class="col-8 col-md-4 navbar__logo">
+          <div class="col-8 col-md-2 navbar__logo">
             <div class="menu-icon-mobile d-md-none navbar__brand__menu-toggle closed open">
               <svg data-src="{% static "images/mobile-menu.svg" %}" width="28px" height="20px"/>
               <span>{% trans "menu" context "Hamburger button text" %}</span>
             </div>
-            <a href="{% url 'home' %}"><h4 style="color: black">Ghar Tameer</h4>
-{#              <svg data-src="{% static "images/logo.svg" %}" height="38px" width="176px"/>#}
+            <a href="{% url 'home' %}">
+              <img src="{% static "images/ghr-tameer2.png" %}" height="60px" width="176px"/>
             </a>
           </div>
-          <div class="col-2 col-md-4 navbar__search static">
-            {% if SEARCH_IS_ENABLED %}
-              <div class="d-md-none mobile-search-icon">
-                <svg data-src="{% static "images/search.svg" %}" width="30" height="30"/>
-              </div>
-              <form class="form-inline search-form" action="{% url "search:search" %}">
-                <div class="mobile-close-search d-md-none">
-                  <svg data-src="{% static "images/close.svg" %}" width="30" height="30"/>
-                </div>
-                <input class="form-control" type="text" name="q"
-                       value="{% if query %}{{ query }}{% endif %}"
-                       placeholder="{% trans "Search for product" %}"
-                       required>
-                <button class="btn btn-link" type="submit">
-                  <svg data-src="{% static "images/search.svg" %}" width="30" height="30"/>
-                </button>
-              </form>
-            {% endif %}
+          <div class="col-2 col-md-8 navbar__search static">
+            <div class="navbar__menu container d-block">
+              <nav class="navigation">
+                <ul class="nav navbar-nav mb-4 mb-md-0">
+                  <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">Product</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">Contact us</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">About us</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">FAQ'S</a></li>
+                </ul>
+              </nav>
+            </div>
+{#            {% if SEARCH_IS_ENABLED %}#}
+{#              <div class="d-md-none mobile-search-icon">#}
+{#                <svg data-src="{% static "images/search.svg" %}" width="30" height="30"/>#}
+{#              </div>#}
+{#              <form class="form-inline search-form" action="{% url "search:search" %}">#}
+{#                <div class="mobile-close-search d-md-none">#}
+{#                  <svg data-src="{% static "images/close.svg" %}" width="30" height="30"/>#}
+{#                </div>#}
+{#                <input class="form-control" type="text" name="q"#}
+{#                       value="{% if query %}{{ query }}{% endif %}"#}
+{#                       placeholder="{% trans "Search for product" %}"#}
+{#                       required>#}
+{#                <button class="btn btn-link" type="submit">#}
+{#                  <svg data-src="{% static "images/search.svg" %}" width="30" height="30"/>#}
+{#                </button>#}
+{#              </form>#}
+{#            {% endif %}#}
           </div>
-          <div class="col-2 col-md-4">
+          <div class="col-2 col-md-2">
             <div class="navbar__brand__cart float-right">
               <a rel="nofollow" class="cart__icon" href="{% url "cart:index" %}">
                 <span class="cart-label d-none d-md-inline-block">
@@ -140,20 +174,6 @@
         </div>
       </div>
     </div>
-    <div class="navbar__menu container d-block">
-      <nav class="navigation">
-        {% url 'home' as home_url %}
-        <ul class="nav navbar-nav mb-4 mb-md-0{% if request.get_full_path == home_url %} no-border{% endif %}">
-          {% for category in categories %}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ category.get_absolute_url }}">
-                {{ category }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </nav>
-    </div>
   </header>
 {% endblock %}
 <div class="container maincontent">
@@ -175,8 +195,8 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <a href="{% url 'home' %}" class="footer__logo"><h4 style="color: black">Ghar Tameer</h4>
-{#            <svg data-src="{% static "images/logo.svg" %}" height="38px" width="176px"/>#}
+          <a href="{% url 'home' %}" class="footer__logo">
+            <img src="{% static "images/ghr-tameer2.png" %}" height="60px" width="176px"/>
           </a>
         </div>
         <div class="col-md-3 col-sm-6">
